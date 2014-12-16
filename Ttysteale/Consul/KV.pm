@@ -91,7 +91,7 @@ sub KVget {
 	my $value;
 	eval {
             $value = JSON::decode_json($entry->{Value});
-	}
+	};
 	$value = $entry->{Value} unless $value;
 	$entry->{Value} = $value;
 	push @ret, $entry;
