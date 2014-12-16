@@ -45,7 +45,9 @@ sub _send_req {
 sub _gen_url {
     my $self = shift;
     my $key  = shift;
- 
+
+    print $key;
+
     return $self->{proto} . '://' . $self->{consul_server} . ':' . $self->{consul_port} . '/v1/kv' . $self->{prefix} . $key;
 }
 
