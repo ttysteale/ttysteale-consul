@@ -7,7 +7,7 @@ use JSON;
 use Data::Dumper;
 use HTTP::Request;
 use LWP::UserAgent;
-
+use HTTP::Request::Common;
 
 sub new {
     my %args = @_;
@@ -55,8 +55,10 @@ sub KVdelete {
     my $url = _gen_url($key);
 
     my $res = $self->_send_req(
-            HTTP::Request->new(DELETE => $url),
-	    $url
+	    HTTP::Request::Common::_simple_req(
+                'DELETE',
+		$url
+            )
 	);
 
     return $res;
