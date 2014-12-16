@@ -59,7 +59,7 @@ sub KVdelete {
     
     die 'KVdelete: key required as first argument' unless defined $key;
 
-    my $url = gen_url($key);
+    my $url = $self->gen_url($key);
 
     my $res = $self->_send_req(
 	    HTTP::Request::Common::_simple_req(
