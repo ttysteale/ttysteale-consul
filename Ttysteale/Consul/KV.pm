@@ -42,7 +42,7 @@ sub _send_req {
     return 0;
 }
 
-sub _gen_url {
+sub gen_url {
     my $self = shift;
     my $key  = shift;
 
@@ -57,7 +57,7 @@ sub KVdelete {
     
     die 'KVdelete: key required as first argument' unless defined $key;
 
-    my $url = _gen_url($key);
+    my $url = gen_url($key);
 
     my $res = $self->_send_req(
 	    HTTP::Request::Common::_simple_req(
