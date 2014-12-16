@@ -14,7 +14,7 @@ sub new {
     my $self = {};
     bless($self, $class);
 
-    my %args = @args;
+    my %args = @_;
     my %ua_args = ();
 
 
