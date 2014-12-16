@@ -5,6 +5,7 @@ use warnings;
 
 use JSON;
 use Data::Dumper;
+use HTTP::Request;
 
 sub new {
     my %args = @_;
@@ -29,16 +30,30 @@ sub _send_req {
     
     my $ret = $self->{ua}->request($req, %req_params);
     
-    if (not defined($ret->is_success)) { return 'http request failed with ' . 
-$ret->status_line; }
+    if (not defined($ret->is_success)) { return $ret->status_code }
 
     return 0;
 }
 
+sub _gen_url {
+    my $self = shift;
+    my $key  = shift;
+ 
+    return $self->{proto} . '://' . $self->{consul_server} . ':' . $self->{consul_port} . '/v1/kv' . $key;
+}
+
 sub KVdelete {
-
+    my $self = shift;
+    my $key  = shift;
     
+    die 'KVdelete: key required as first argument' unless defined $key;
 
+    my $url = _gen_url($key);
+
+    my $req = HTTP::Request->new(DELETE => $url);
+    my $res = $ua->request($req);
+
+    return $res;
 }
 
 sub KVget {}
