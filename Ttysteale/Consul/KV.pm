@@ -50,8 +50,10 @@ sub KVdelete {
 
     my $url = _gen_url($key);
 
-    my $req = HTTP::Request->new(DELETE => $url);
-    my $res = $ua->request($req);
+    my $res = $self->_send_req(
+            HTTP::Request->new(DELETE => $url),
+	    $url
+	);
 
     return $res;
 }
