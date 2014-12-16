@@ -6,6 +6,8 @@ use warnings;
 use JSON;
 use Data::Dumper;
 use HTTP::Request;
+use LWP::UserAgent;
+
 
 sub new {
     my %args = @_;
