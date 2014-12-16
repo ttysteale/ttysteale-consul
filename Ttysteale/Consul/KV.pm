@@ -14,6 +14,8 @@ sub new {
     my %ua_args = ();
     my $self = {};
 
+    bless($self);
+
     $self->{consul_server} = $args{consul_server} || 'localhost';
     $self->{proto} = $args{proto} || 'http';
     $self->{consul_port} = $args{port} || 8500;
