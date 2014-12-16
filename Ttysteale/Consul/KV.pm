@@ -68,7 +68,38 @@ sub KVdelete {
     return $res;
 }
 
-sub KVget {}
+sub KVget {
+    my $self = shift;
+    my $key = shift;
+    my %args = @_;
+
+    die 'KVget: key required as first argument' unless defined $key;
+  
+    my @entries = ();
+
+    eval {
+        my $url = $self->gen_url($key);
+        my $res = $self->_send_req(GET $url);
+        my $content = $res->content;
+        my $values = JSON::decode_json($content);
+        @entries = @$values;
+    };
+
+    my @ret;
+    foreach my $entry (@entries) {
+        $entry->{Value} = MIME::Base64::decode_base64($entry->{Value});
+	my $value;
+	eval {
+            $value = JSON::decode_json($entry->{Value});
+	}
+	$value = $entry->{Value} unless $value;
+	$entry->{Value} = $value;
+	push @ret, $entry;
+    }
+
+    return @ret;
+
+}
 
 sub KVput {}
 
