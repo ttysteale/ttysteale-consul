@@ -101,6 +101,19 @@ sub KVget {
 
 }
 
-sub KVput {}
+sub KVput {
+    my $self = shift;
+    my $key = shift;
+    my $value = shift;
+
+    die 'KVput: key required as first argument' unless defined $key;
+    die 'KVput: value required as sec argument' unless defined $value;
+
+    $value = JSON::encode_json($value);
+
+    my $res = $self->_do_request(PUT $self->gen_url($key), Content => $value);
+    return $res;
+
+}
 
 1;
