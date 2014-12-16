@@ -10,7 +10,8 @@ use LWP::UserAgent;
 use HTTP::Request::Common;
 
 sub new {
-    my %args = @_;
+    my @args = @_;
+    my %args = @args;
     my %ua_args = ();
     my $self = {};
 
