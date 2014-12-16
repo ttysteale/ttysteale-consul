@@ -44,11 +44,8 @@ sub _send_req {
 }
 
 sub gen_url {
-    print Dumper @_;
     my $self = shift;
     my $key  = shift;
-
-    print $key;
 
     return $self->{proto} . '://' . $self->{consul_server} . ':' . $self->{consul_port} . '/v1/kv' . $self->{prefix} . $key;
 }
