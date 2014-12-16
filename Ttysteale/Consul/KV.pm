@@ -10,16 +10,18 @@ use LWP::UserAgent;
 use HTTP::Request::Common;
 
 sub new {
-    my @args = @_;
+    my $class = shift;
+    my $self = {};
+    bless($self, $class);
+
     my %args = @args;
     my %ua_args = ();
-    my $self = {};
 
-    bless($self);
 
     $self->{consul_server} = $args{consul_server} || 'localhost';
     $self->{proto} = $args{proto} || 'http';
     $self->{consul_port} = $args{port} || 8500;
+    $self->{prefix} = $args{prefix} || '/';
 
     $ua_args{ssl_opts} = $args{ssl_opts} if $args{ssl_opts};
     $self->{ua} = LWP::UserAgent->new(%ua_args);
@@ -44,7 +46,7 @@ sub _gen_url {
     my $self = shift;
     my $key  = shift;
  
-    return $self->{proto} . '://' . $self->{consul_server} . ':' . $self->{consul_port} . '/v1/kv' . $key;
+    return $self->{proto} . '://' . $self->{consul_server} . ':' . $self->{consul_port} . '/v1/kv' . $self->{prefix} . $key;
 }
 
 sub KVdelete {
