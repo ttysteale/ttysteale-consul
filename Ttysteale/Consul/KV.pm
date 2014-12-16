@@ -111,7 +111,7 @@ sub KVput {
 
     $value = JSON::encode_json($value);
 
-    my $res = $self->_do_request(PUT $self->gen_url($key), Content => $value);
+    my $res = $self->_send_req(PUT $self->gen_url($key), Content => $value);
     return $res;
 
 }
