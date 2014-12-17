@@ -4,11 +4,9 @@ use strict;
 use warnings;
 
 use JSON;
-use Data::Dumper;
 use HTTP::Request;
 use LWP::UserAgent;
 use HTTP::Request::Common;
-use Data::Dumper;
 
 sub new {
     my $class = shift;
