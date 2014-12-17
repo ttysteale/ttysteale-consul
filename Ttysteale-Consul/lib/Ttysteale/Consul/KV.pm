@@ -157,7 +157,7 @@ Ttysteale::Consul::KV - Perl extension for KV Consul API
 
 =head1 SEE ALSO
 
-Consul Documentation E<http://www.consul.io/docs/agent/http.htmlE>
+Consul Documentation E<lt>http://www.consul.io/docs/agent/http.htmlE<gt>
 
 =head1 AUTHOR
 

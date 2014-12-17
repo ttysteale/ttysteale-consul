@@ -1,0 +1,16 @@
+Source: libttysteale-consul-perl
+Section: perl
+Priority: optional
+Maintainer: root <root@ops-buildmonitor5.ldc1>
+Build-Depends: debhelper (>= 8)
+Build-Depends-Indep: perl
+Standards-Version: 3.9.2
+Homepage: http://search.cpan.org/dist/Ttysteale-Consul/
+
+Package: libttysteale-consul-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends}
+Description: The great new Ttysteale::Consul!
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
